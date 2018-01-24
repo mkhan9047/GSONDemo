@@ -1,0 +1,26 @@
+{
+  "name" : "Dynamic Ins",
+  "owner" :
+  {
+    "name" : "Mujahid khan",
+    "address" :
+    {
+      "city" : "khulna",
+      "country" : "Bangladesh",
+      "houseNumber" : "4325HB",
+      "street" : "Khulna to Satkhira"
+    }
+  },
+  "cook" :
+  {
+    "age" : 12,
+    "name" : "sohel",
+    "salary" : 1500
+  },
+  "waiter" :
+  {
+    "age" : 19,
+    "name" : "sumon",
+    "salary" : 1000
+  }
+}

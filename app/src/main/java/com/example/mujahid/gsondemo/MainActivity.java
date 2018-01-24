@@ -1,6 +1,7 @@
 package com.example.mujahid.gsondemo;
 
 import android.os.Bundle;
+import android.support.constraint.solver.Goal;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,9 @@ import android.view.MenuItem;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        deSerilizeSimpleUser();
-        //serializeSimpleUser();
+       // deSerilizeSimpleUser();
+        serializeSimpleUser();
     }
 
 
@@ -56,11 +60,29 @@ public class MainActivity extends AppCompatActivity {
        Log.d("json",json);
 */
 
+
+     //resturant data serilize
+        UserAddress ad = new UserAddress("K to S","456HB","Khulna","BD");
+        Resturant.ResturantOwner resturantOwner = new Resturant.ResturantOwner("Mujahid",ad);
+        Resturant.ResturantStaff cook = new Resturant.ResturantStaff(12,"SOhel",1400);
+        Resturant.ResturantStaff waiter = new Resturant.ResturantStaff(18,"Sumon",1800);
+        List<Resturant.ResturantMenuItem> items = new ArrayList<>();
+        items.add(new Resturant.ResturantMenuItem("Berini",12f,true));
+        items.add(new Resturant.ResturantMenuItem("Chap",14f,true));
+        items.add(new Resturant.ResturantMenuItem("Kabab",18f,true));
+        items.add(new Resturant.ResturantMenuItem("Tandur",2f,true));
+        items.add(new Resturant.ResturantMenuItem("Borhani",2f,false));
+        Resturant resturant = new Resturant("Mujahid",resturantOwner,cook,waiter,items);
+
+        Gson a = new Gson();
+        String json = a.toJson(resturant);
+        Log.d("josn",json);
+
     }
 
 
     private void deSerilizeSimpleUser(){
-        
+
 
           /* //this are for simple deserilize
         String usrjson = "{'name':'Mujahid', 'email':'mkhan9047@gmail.com', 'age': 21, 'isDeveloper':true}";
@@ -79,6 +101,16 @@ public class MainActivity extends AppCompatActivity {
         + user.getAddress().getHouseNumber()
         );
 */
+
+        //restaurant json data deserilize
+
+        String jsonData = "\n" +
+                "{'name':'Dynamic Ins', 'owner':{'name':'Mujahid khan', 'address':{'city':'khulna','country':'Bangladesh','houseNumber':'4325HB','street':'Khulna to Satkhira'}},'cook':{'age':12,'name':'sohel','salary':1500},'waiter':{'age':19,'name':'sumon','salary':1000}}";
+        Gson gson = new Gson();
+
+        Resturant resturant = gson.fromJson(jsonData, Resturant.class);
+
+
 
 
     }
