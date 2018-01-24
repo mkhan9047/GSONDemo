@@ -27,17 +27,59 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void serializeSimpleUser(){
+        /* //this are for simple serilize
         SimpleUser user = new SimpleUser("Mujahid","mkhan9047@gmail.com",21,true);
         Gson gson = new Gson();
         String json = gson.toJson(user);
         Log.d("json",gson.toJson(user));
+        */
+
+        //this are for nested object serilize
+     /*
+        UserAddress userAddress = new UserAddress(
+                "Khulna to Satkhira",
+                "34LT5",
+                "Khulna",
+                "Bangladesh"
+        );
+        SimpleUser user = new SimpleUser(
+                "Mujahid",
+                "mkhan9047@gmail.com",
+                21,
+                true,
+                 userAddress
+                );
+
+
+        Gson gson = new Gson();
+       String json =  gson.toJson(user);
+       Log.d("json",json);
+*/
+
     }
 
 
     private void deSerilizeSimpleUser(){
+        
+
+          /* //this are for simple deserilize
         String usrjson = "{'name':'Mujahid', 'email':'mkhan9047@gmail.com', 'age': 21, 'isDeveloper':true}";
         Gson gson = new Gson();
         SimpleUser simpleUser = gson.fromJson(usrjson, SimpleUser.class);
+*/
+
+        //this are for nested deserilize
+
+        /*
+        String json = "{'address':{'city':'Khulna','country':'Bangladesh','houseNumber':'34LT5','street':'Khulna to Satkhira'},'age':21,'email':'mkhan9047@gmail.com','isDeveloper':true,'name':'Mujahid'}";
+        Gson gson = new Gson();
+        SimpleUser user = gson.fromJson(json,SimpleUser.class);
+        //you can see the user objects property in dubgger mode eaisly
+        Log.d("address",user.getAddress().getCity()+" "+user.getAddress().getCountry()+" "
+        + user.getAddress().getHouseNumber()
+        );
+*/
+
 
     }
 
