@@ -5,9 +5,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,16 +20,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        deSerilizeSimpleUser();
+        //serializeSimpleUser();
     }
+
+
+
+    private void serializeSimpleUser(){
+        SimpleUser user = new SimpleUser("Mujahid","mkhan9047@gmail.com",21,true);
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        Log.d("json",gson.toJson(user));
+    }
+
+
+    private void deSerilizeSimpleUser(){
+        String usrjson = "{'name':'Mujahid', 'email':'mkhan9047@gmail.com', 'age': 21, 'isDeveloper':true}";
+        Gson gson = new Gson();
+        SimpleUser simpleUser = gson.fromJson(usrjson, SimpleUser.class);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
